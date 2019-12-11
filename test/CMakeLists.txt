@@ -1,6 +1,6 @@
 include_directories (${CMAKE_SOURCE_DIR})
 
-include(gtest)
+include(AddGoogleTest)
 
 add_executable (ProjectTest project_test.cc)
 add_gtest(ProjectTest)

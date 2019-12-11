@@ -1,9 +1,14 @@
 #!/bin/bash
 
-sudo rm -r build
+rm -r build
 mkdir build
 cd build
-cmake .. && make -j4  #&& ./bin/unit_tests
+cmake .. && make -j4 
+
+echo "------------------------------"
+echo "-----  execute test     ------"
+echo "------------------------------"
+./test/ProjectTest
 
 echo "------------------------------"
 echo "-----  execute project  ------"
