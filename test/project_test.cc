@@ -4,6 +4,12 @@
 namespace dev {
 namespace testing {
 
+/* TODO:
+ * rename file: CalculatorTest
+ * add: tests for negative numbers
+ * add: tests for complex data
+ */
+
 class ProjectTest : public ::testing::Test {
  public:
   void SetUp() override {}

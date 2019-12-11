@@ -23,12 +23,18 @@ Calculator::~Calculator()
     clearStack();
 }
 
+/* TODO:
+ *  rename: setData
+ */
 //-----------------------------------------------------------------------------
 void Calculator::setStack(const std::string inputLine)
 //-----------------------------------------------------------------------------
 {
     clearStack();
-
+    /* TODO:
+     *  simplify: make separate function for take single world
+     *  add: while !str.empty() save world to stack
+     */
     std::string word = "";
     const char* firstCharPtr = inputLine.c_str();
 
@@ -78,7 +84,12 @@ const std::string& Calculator::getStackTop() const
 {
     return mStack.top();
 }
-
+/* TODO:
+ *  rename: calculateData
+ *  add: work with negative numbers
+ *  add: work with double numbers
+ *  make: recursive calculation
+ */
 //-----------------------------------------------------------------------------
 void Calculator::processStackTop()
 //-----------------------------------------------------------------------------
