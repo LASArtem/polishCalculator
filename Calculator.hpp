@@ -12,7 +12,7 @@ public:
     Calculator();
     ~Calculator();
 
-    void setStack(std::string inputLine);
+    void setStack(const std::string inputLine);
     void printStack() const;
     int getStackSize() const;
 
@@ -25,12 +25,12 @@ private:
     std::stack<std::string> mStack;
 
     void clearStack();
-    eSigns strToSing(const std::string str) const;
-    bool sum(std::string& result, const std::string a, const std::string b);
-    bool diff(std::string& result, const std::string a, const std::string b);
-    bool multiplication(std::string& result, const std::string a, const std::string b);
-    bool division(std::string& result, const std::string a, const std::string b);
-
+    eSigns strToSign(const std::string str) const;
+    bool isNumber(const std::string& str) const;
+    bool sum(std::string& result, const std::string a, const std::string b) const;
+    bool diff(std::string& result, const std::string a, const std::string b) const;
+    bool multiplication(std::string& result, const std::string a, const std::string b) const;
+    bool division(std::string& result, const std::string a, const std::string b) const;
 };
 
 }//dev end

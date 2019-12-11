@@ -10,22 +10,32 @@ int main()
     example= "12 3 +";
     app.setStack(example);
     app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << std::endl;
+    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
 
     example= "12 3 -";
     app.setStack(example);
     app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << std::endl;
+    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
 
     example= "12 3 *";
     app.setStack(example);
     app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << std::endl;
+    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
 
     example= "12 3 /";
     app.setStack(example);
     app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << std::endl;
+    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+
+    example= "+ + +";
+    app.setStack(example);
+    app.processStackTop();
+    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+
+    example= "22 33 +";
+    app.setStack(example);
+    app.processStackTop();
+    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
 
     return 0;
 }
