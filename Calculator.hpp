@@ -5,6 +5,11 @@
 
 namespace dev
 {
+struct Result
+{
+    bool isValid;
+    std::string answer;
+};
 
 class string;
 class Math;
@@ -16,12 +21,15 @@ public:
     Calculator();
     ~Calculator();
 
-    void setStack(const std::string inputLine);
-    void printStack() const;
-    int getStackSize() const;
+    const Result& resolve(const std::string& task);
+    const Result& getLastResult();
 
-    const std::string& getStackTop() const;
-    void processStackTop();
+
+    void setStack(const std::string inputLine); // deprecated
+    int getStackSize() const;                   // deprecated
+
+    const std::string& getStackTop() const;     // deprecated
+    void processStackTop();                     // TODO: move to private
 
 private:
     enum class eSigns: int { PLUS, MINUS, MULTIPLICATION, DIVISION, NONE};
@@ -29,10 +37,11 @@ private:
     std::shared_ptr<dev::Math> mMath;
     std::shared_ptr<dev::Parser> mParser;
     std::stack<std::string> mStack;
+    Result mResult;
 
     void clearStack();
-    eSigns strToSign(const std::string str) const;
-
+    Calculator::eSigns strToSign(const std::string str) const;
+    std::string stackTopPop();
 };
 
 }//dev end
