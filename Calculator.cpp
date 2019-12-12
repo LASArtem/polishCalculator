@@ -1,16 +1,18 @@
-#include <algorithm>
 #include <iostream>
-
+#include <string>
 
 #include "Calculator.hpp"
-
+#include "Math.hpp"
+#include "Parser.hpp"
 
 namespace dev
 {
 
 //-----------------------------------------------------------------------------
 Calculator::Calculator()
-    : mStack()
+    : mMath(std::make_shared<dev::Math>())
+    , mParser(std::make_shared<dev::Parser>())
+    , mStack()
 //-----------------------------------------------------------------------------
 {
 
@@ -31,30 +33,7 @@ void Calculator::setStack(const std::string inputLine)
 //-----------------------------------------------------------------------------
 {
     clearStack();
-    /* TODO:
-     *  simplify: make separate function for take single world
-     *  add: while !str.empty() save world to stack
-     */
-    std::string word = "";
-    const char* firstCharPtr = inputLine.c_str();
-
-    for ( int i = 0; i < inputLine.size(); ++i )
-    {
-        if ( firstCharPtr[i] != 0x20)
-        {
-            word += firstCharPtr[i];
-        }
-        else
-        {
-            mStack.push(word);
-            word.clear();
-        }
-    }
-
-    if (!word.empty())
-    {
-        mStack.push(word);
-    }
+    mParser->parseStringToStringStack(inputLine, mStack);
 }
 
 //-----------------------------------------------------------------------------
@@ -113,19 +92,19 @@ void Calculator::processStackTop()
     switch(strToSign(sign))
     {
         case eSigns::PLUS:
-            success = sum(result, a, b);
+            success = mMath->sum(result, a, b);
             break;
 
         case eSigns::MINUS:
-            success = diff(result, a, b);
+            success = mMath->diff(result, a, b);
             break;
 
         case eSigns::MULTIPLICATION:
-            success = multiplication(result, a, b);
+            success = mMath->multiplication(result, a, b);
             break;
 
         case eSigns::DIVISION:
-            success = division(result, a, b);
+            success = mMath->division(result, a, b);
             break;
 
         default:
@@ -185,69 +164,6 @@ Calculator::eSigns Calculator::strToSign(const std::string str) const
     }
 
     return eSigns::NONE;
-}
-
-//-----------------------------------------------------------------------------
-bool Calculator::isNumber(const std::string& str) const
-//-----------------------------------------------------------------------------
-{
-    return ( !str.empty() )
-           && ( str.end() == std::find_if(str.begin(), str.end(), [](char c)
-                             {
-                                return !std::isdigit(c);
-                             }));
-}
-
-//-----------------------------------------------------------------------------
-bool Calculator::sum(std::string& result, const std::string a, const std::string b) const
-//-----------------------------------------------------------------------------
-{
-    const bool isFirstNumber = isNumber(a);
-    const bool isSecondNumber = isNumber(b);
-    if (isFirstNumber && isSecondNumber)
-    {
-        result = std::to_string(std::stoi(a) + std::stoi(b));
-    }
-    return isFirstNumber && isSecondNumber;
-}
-
-//-----------------------------------------------------------------------------
-bool Calculator::diff(std::string& result, const std::string a, const std::string b) const
-//-----------------------------------------------------------------------------
-{
-    const bool isFirstNumber = isNumber(a);
-    const bool isSecondNumber = isNumber(b);
-    if (isFirstNumber && isSecondNumber)
-    {
-        result = std::to_string(std::stoi(a) - std::stoi(b));
-    }
-    return isFirstNumber && isSecondNumber;
-}
-
-//-----------------------------------------------------------------------------
-bool Calculator::multiplication(std::string& result, const std::string a, const std::string b) const
-//-----------------------------------------------------------------------------
-{
-    const bool isFirstNumber = isNumber(a);
-    const bool isSecondNumber = isNumber(b);
-    if (isFirstNumber && isSecondNumber)
-    {
-        result = std::to_string(std::stoi(a) * std::stoi(b));
-    }
-    return isFirstNumber && isSecondNumber;
-}
-
-//-----------------------------------------------------------------------------
-bool Calculator::division(std::string& result, const std::string a, const std::string b) const
-//-----------------------------------------------------------------------------
-{
-    const bool isFirstNumber = isNumber(a);
-    const bool isSecondNumber = isNumber(b);
-    if (isFirstNumber && isSecondNumber)
-    {
-        result = std::to_string(std::stoi(a) / std::stoi(b));
-    }
-    return isFirstNumber && isSecondNumber;
 }
 
 }//dev end

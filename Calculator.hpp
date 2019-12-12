@@ -1,10 +1,14 @@
 #pragma once
 
 #include <stack>
-#include <string>
+#include <memory>
 
 namespace dev
 {
+
+class string;
+class Math;
+class Parser;
 
 class Calculator
 {
@@ -22,15 +26,13 @@ public:
 private:
     enum class eSigns: int { PLUS, MINUS, MULTIPLICATION, DIVISION, NONE};
 
+    std::shared_ptr<dev::Math> mMath;
+    std::shared_ptr<dev::Parser> mParser;
     std::stack<std::string> mStack;
 
     void clearStack();
     eSigns strToSign(const std::string str) const;
-    bool isNumber(const std::string& str) const;
-    bool sum(std::string& result, const std::string a, const std::string b) const;
-    bool diff(std::string& result, const std::string a, const std::string b) const;
-    bool multiplication(std::string& result, const std::string a, const std::string b) const;
-    bool division(std::string& result, const std::string a, const std::string b) const;
+
 };
 
 }//dev end

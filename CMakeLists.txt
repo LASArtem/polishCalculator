@@ -4,7 +4,7 @@ project(polish_calculator)
 set(CMAKE_CXX_STANDARD 14)
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-set(SOURCES Calculator.cpp)
+set(SOURCES Calculator.cpp Math.cpp Parser.cpp)
 add_library(ProjectLib ${SOURCES})
 
 add_executable(project main.cpp)
