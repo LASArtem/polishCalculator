@@ -11,4 +11,4 @@ add_executable(project main.cpp)
 target_link_libraries(project ProjectLib)
 
 enable_testing()
-add_subdirectory(test)
+add_subdirectory(tests)
