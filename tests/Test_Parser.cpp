@@ -70,6 +70,15 @@ TEST_F(TestParser, ParseLineWith_5_elements)
     ASSERT_EQ(expectSize, stack.size());
 }
 
+TEST_F(TestParser, ParseLineWithSpaces)
+{
+    const size_t expectSize = 0;
+    const std::string line = "            ";
+    std::stack<std::string> stack;
+    mParser.parseStringToStringStack(line, stack);
+    ASSERT_EQ(expectSize, stack.size());
+}
+
 //--- Check Top ---------------------------------------------------------------
 TEST_F(TestParser, CheckTopNumber) {
     const std::string expectTop = "123";

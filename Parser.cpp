@@ -39,8 +39,11 @@ void Parser::parseStringToStringStack(const std::string line, std::stack<std::st
         }
         else
         {
-            stack.push(word);
-            word.clear();
+            if (!word.empty())
+            {
+                stack.push(word);
+                word.clear();
+            }
         }
     }
 
