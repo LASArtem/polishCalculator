@@ -5,37 +5,32 @@
 int main()
 {
     dev::Calculator app;
+    dev::Result result;
     std::string example = "";
 
     example= "12 3 +";
-    app.setStack(example);
-    app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+    result = app.resolve(example);
+    std::cout << "main: app.resolve: " << example << " = " << (result.isValid ? result.answer : "ERROR of resolving") << "\n" << std::endl;
 
     example= "12 3 -";
-    app.setStack(example);
-    app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+    result = app.resolve(example);
+    std::cout << "main: app.resolve: " << example << " = " << (result.isValid ? result.answer : "ERROR of resolving") << "\n" << std::endl;
 
     example= "12 3 *";
-    app.setStack(example);
-    app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+    result = app.resolve(example);
+    std::cout << "main: app.resolve: " << example << " = " << (result.isValid ? result.answer : "ERROR of resolving") << "\n" << std::endl;
 
     example= "12 3 /";
-    app.setStack(example);
-    app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+    result = app.resolve(example);
+    std::cout << "main: app.resolve: " << example << " = " << (result.isValid ? result.answer : "ERROR of resolving") << "\n" << std::endl;
 
     example= "+ + +";
-    app.setStack(example);
-    app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+    result = app.resolve(example);
+    std::cout << "main: app.resolve: " << example << " = " << (result.isValid ? result.answer : "ERROR of resolving") << "\n" << std::endl;
 
     example= "22 33 +";
-    app.setStack(example);
-    app.processStackTop();
-    std::cout << "main: setStack: " << example << " = " << app.getStackTop() << "\n" << std::endl;
+    result = app.resolve(example);
+    std::cout << "main: app.resolve: " << example << " = " << (result.isValid ? result.answer : "ERROR of resolving") << "\n" << std::endl;
 
     return 0;
 }

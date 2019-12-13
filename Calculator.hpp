@@ -24,22 +24,17 @@ public:
     const Result& resolve(const std::string& task);
     const Result& getLastResult();
 
-
-    void setStack(const std::string inputLine); // deprecated
-    int getStackSize() const;                   // deprecated
-
-    const std::string& getStackTop() const;     // deprecated
-    void processStackTop();                     // TODO: move to private
-
 private:
     enum class eSigns: int { PLUS, MINUS, MULTIPLICATION, DIVISION, NONE};
 
     std::shared_ptr<dev::Math> mMath;
     std::shared_ptr<dev::Parser> mParser;
+
     std::stack<std::string> mStack;
     Result mResult;
 
     void clearStack();
+    void processStackTop();
     Calculator::eSigns strToSign(const std::string str) const;
     std::string stackTopPop();
 };

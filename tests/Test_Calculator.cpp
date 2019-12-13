@@ -14,49 +14,53 @@ class TestCalculator : public ::testing::Test {
   dev::Calculator mCalculator;
 };
 
-TEST_F(TestCalculator, SetStack) {
+
+TEST_F(TestCalculator, SumOfPositiveIntegerNumberAndPositiveIntegerNumber) {
     std::string example = "12 3 +";
-    mCalculator.setStack(example);
-    ASSERT_EQ(3, mCalculator.getStackSize());
+    std::string expectedResult = "15";
+    dev::Result result = mCalculator.resolve(example);
+    EXPECT_TRUE(result.isValid);
+    EXPECT_EQ(expectedResult, result.answer);
 }
 
-TEST_F(TestCalculator, GetStackTop) {
-    std::string example = "12 3 +";
-    std::string top = "+";
-    mCalculator.setStack(example);
-    EXPECT_EQ(top, mCalculator.getStackTop());
+TEST_F(TestCalculator, SumOfPositiveIntegerNumberAndNegativeIntegerNumber) {
+    std::string example = "12 -3 +";
+    std::string expectedResult = "9";
+    dev::Result result = mCalculator.resolve(example);
+    EXPECT_TRUE(result.isValid);
+    EXPECT_EQ(expectedResult, result.answer);
 }
 
-TEST_F(TestCalculator, CheckSum) {
-    std::string example = "12 3 +";
-    std::string result = "15";
-    mCalculator.setStack(example);
-    mCalculator.processStackTop();
-    EXPECT_EQ(result, mCalculator.getStackTop());
+TEST_F(TestCalculator, SumOfNegativeIntegerNumberAndPositiveIntegerNumber) {
+    std::string example = "-12 3 +";
+    std::string expectedResult = "-9";
+    dev::Result result = mCalculator.resolve(example);
+    EXPECT_TRUE(result.isValid);
+    EXPECT_EQ(expectedResult, result.answer);
 }
 
-TEST_F(TestCalculator, CheckDiff) {
+TEST_F(TestCalculator, DiffOfPositiveIntegerNumberAndPositiveIntegerNumber) {
     std::string example = "12 3 -";
-    std::string result = "9";
-    mCalculator.setStack(example);
-    mCalculator.processStackTop();
-    EXPECT_EQ(result, mCalculator.getStackTop());
+    std::string expectedResult = "9";
+    dev::Result result = mCalculator.resolve(example);
+    EXPECT_TRUE(result.isValid);
+    EXPECT_EQ(expectedResult, result.answer);
 }
 
-TEST_F(TestCalculator, CheckMultiplication) {
+TEST_F(TestCalculator, MultiplicationOfPositiveIntegerNumberAndPositiveIntegerNumber) {
     std::string example = "12 3 *";
-    std::string result = "36";
-    mCalculator.setStack(example);
-    mCalculator.processStackTop();
-    EXPECT_EQ(result, mCalculator.getStackTop());
+    std::string expectedResult = "36";
+    dev::Result result = mCalculator.resolve(example);
+    EXPECT_TRUE(result.isValid);
+    EXPECT_EQ(expectedResult, result.answer);
 }
 
-TEST_F(TestCalculator, CheckDivision) {
+TEST_F(TestCalculator, DivisionOfPositiveIntegerNumberAndPositiveIntegerNumber) {
     std::string example = "12 3 /";
-    std::string result = "4";
-    mCalculator.setStack(example);
-    mCalculator.processStackTop();
-    EXPECT_EQ(result, mCalculator.getStackTop());
+    std::string expectedResult = "4";
+    dev::Result result = mCalculator.resolve(example);
+    EXPECT_TRUE(result.isValid);
+    EXPECT_EQ(expectedResult, result.answer);
 }
 
 

@@ -30,13 +30,9 @@ Calculator::~Calculator()
 const Result& Calculator::resolve(const std::string& task)
 //-----------------------------------------------------------------------------
 {
-    mResult.isValid = false;
     clearStack();
-
     mParser->parseStringToStringStack(task, mStack);
-
     processStackTop();
-
     return getLastResult();
 }
 
@@ -47,30 +43,16 @@ const Result& Calculator::getLastResult()
     return mResult;
 }
 
-/* TODO:
- *  rename: setData
- */
 //-----------------------------------------------------------------------------
-void Calculator::setStack(const std::string inputLine)
+void Calculator::clearStack()
 //-----------------------------------------------------------------------------
 {
-    clearStack();
-    mParser->parseStringToStringStack(inputLine, mStack);
+    while (!mStack.empty())
+    {
+        mStack.pop();
+    }
 }
 
-//-----------------------------------------------------------------------------
-int Calculator::getStackSize() const
-//-----------------------------------------------------------------------------
-{
-    return static_cast<int>(mStack.size());
-}
-
-//-----------------------------------------------------------------------------
-const std::string& Calculator::getStackTop() const
-//-----------------------------------------------------------------------------
-{
-    return mStack.top();
-}
 /* TODO:
  *  rename: calculateData
  *  add: work with negative numbers
@@ -118,16 +100,6 @@ void Calculator::processStackTop()
         mStack.push(a);
         mStack.push(b);
         mStack.push(sign);
-    }
-}
-
-//-----------------------------------------------------------------------------
-void Calculator::clearStack()
-//-----------------------------------------------------------------------------
-{
-    while (!mStack.empty())
-    {
-        mStack.pop();
     }
 }
 

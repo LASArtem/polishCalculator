@@ -15,31 +15,49 @@ class TestMath : public ::testing::Test {
 };
 
 //---  SUM  -------------------------------------------------------------------
-TEST_F(TestMath, SumOfNumberAndNumber) {
+TEST_F(TestMath, SumOfPositiveIntegerNumberAndPositiveIntegerNumber) {
     std::string result = "";
     std::string a = "15";
     std::string b = "35";
-    std::string realResult = "50";
-    const bool success = mMath.sum(result, a, b);
-    EXPECT_EQ(realResult, result);
+    std::string expectedResult = "50";
+    EXPECT_TRUE(mMath.sum(result, a, b));
+    EXPECT_EQ(expectedResult, result);
 }
 
-TEST_F(TestMath, SumOfNotNumberAndNumber) {
+TEST_F(TestMath, SumOfNegativeIntegerNumberAndPositiveIntegerNumber) {
+    std::string result = "";
+    std::string a = "-15";
+    std::string b = "35";
+    std::string expectedResult = "20";
+    EXPECT_TRUE(mMath.sum(result, a, b));
+    EXPECT_EQ(expectedResult, result);
+}
+
+TEST_F(TestMath, SumOfPositiveIntegerNumberAndNegativeIntegerNumber) {
+    std::string result = "";
+    std::string a = "15";
+    std::string b = "-35";
+    std::string expectedResult = "-20";
+    EXPECT_TRUE(mMath.sum(result, a, b));
+    EXPECT_EQ(expectedResult, result);
+}
+
+TEST_F(TestMath, SumOfSpecialAndPositiveIntegerNumber) {
     std::string result = "";
     std::string a = "!!";
     std::string b = "35";
-    std::string realResult = "50";
-    const bool success = mMath.sum(result, a, b);
-    EXPECT_NE(realResult, result);
+    std::string expectedResult = "50";
+    EXPECT_FALSE(mMath.sum(result, a, b));
+    EXPECT_NE(expectedResult, result);
 }
 
-TEST_F(TestMath, SumOfNumberAndNotNumber) {
+TEST_F(TestMath, SumOfPositiveIntegerNumberAndSpecial) {
     std::string result = "";
     std::string a = "15";
     std::string b = "!!";
-    std::string realResult = "50";
-    const bool success = mMath.sum(result, a, b);
-    EXPECT_NE(realResult, result);
+    std::string expectedResult = "50";
+    EXPECT_FALSE(mMath.sum(result, a, b));
+    EXPECT_NE(expectedResult, result);
 }
 
 //---  DIFF -------------------------------------------------------------------
