@@ -17,9 +17,7 @@ public:
     bool division(std::string& result, const std::string a, const std::string b) const;
 
 private:
-    inline bool isInteger(const std::string& str) const;
-    inline bool isDouble(const std::string& str) const;
-    inline bool isNegativeInteger(const std::string& str) const;
+
 };
 
 } //namespace dev

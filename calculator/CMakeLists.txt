@@ -7,6 +7,8 @@ message("============ PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_subdirectory(${PROJECT_SOURCE_DIR}/stringRecognizer)
+
 set(PROJECT_INCLUDE
     ${PROJECT_SOURCE_DIR}/parser
     ${PROJECT_SOURCE_DIR}/math
@@ -23,8 +25,6 @@ set(PROJECT_SOURCE
 
 add_library(polishCalculator ${PROJECT_SOURCE})
 
-#add_subdirectory(parser)
-#add_subdirectory(math)
-#add_subdirectory(stringRecognizer)
+target_link_libraries(polishCalculator recognizer)
 
 message("============ Finish cmake : ${PROJECT_NAME}")
