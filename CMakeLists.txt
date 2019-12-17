@@ -1,27 +1,28 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(project_main)
-
 message("========== Start cmake : ${PROJECT_NAME}")
-message("========== CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
-message("========== PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
 
-set(CMAKE_CXX_STANDARD 14)
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/calculator)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "-Wall")
+
 include_directories(${PROJECT_SOURCE_DIR}/calculator)
-set(PROJECT_SOURCE main.cpp)
-add_executable(main ${PROJECT_SOURCE})
 
-target_link_libraries(main polishCalculator)
+add_executable(main main.cpp)
+add_dependencies (main PolishCalculator Recognizer)
+#target_link_libraries(main ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/PolishCalculator)
+#target_link_libraries(main ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/Recognizer)
+include_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+target_link_libraries(main Recognizer PolishCalculator)
 
 
-#set(SOURCES Calculator.cpp Math.cpp Parser.cpp)
-#add_library(ProjectLib ${SOURCES})
-
-#add_executable(project main.cpp)
-#target_link_libraries(project ProjectLib)
-
+#list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 #enable_testing()
 #add_subdirectory(tests)
 
