@@ -30,6 +30,7 @@ private:
     std::shared_ptr<dev::Math> mMath;
     std::shared_ptr<dev::Parser> mParser;
 
+    // Are you sure stack and result are better to be class members, not a variables in resolve?
     std::stack<std::string> mStack;
     Result mResult;
 

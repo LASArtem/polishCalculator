@@ -15,6 +15,8 @@ class TestParser : public ::testing::Test {
   dev::Parser mParser;
 };
 
+// As for me there are too many very simiar cases??
+
 //--- Parse line with N elements ----------------------------------------------
 TEST_F(TestParser, ParseLineWith_0_elements)
 {

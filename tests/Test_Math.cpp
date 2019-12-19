@@ -20,7 +20,7 @@ TEST_F(TestMath, SumOfPositiveIntegerNumberAndPositiveIntegerNumber) {
     std::string a = "15";
     std::string b = "35";
     std::string expectedResult = "50";
-    EXPECT_TRUE(mMath.sum(result, a, b));
+    EXPECT_TRUE(mMath.sum(result, a, b)); // Test continues after this line. So, how about using ASSERT_TRUE??
     EXPECT_EQ(expectedResult, result);
 }
 

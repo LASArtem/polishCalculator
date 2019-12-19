@@ -32,6 +32,7 @@ const Result& Calculator::resolve(const std::string& task)
 {
     clearStack();
     mParser->parseStringToStringStack(task, mStack);
+    // i believe, it is not obvious that processStackTop will modify mResult.
     processStackTop();
     return getLastResult();
 }
@@ -96,6 +97,8 @@ void Calculator::processStackTop()
     }
     else
     {
+        // So we pop at the very beginning and now, if something went wrong, we push back all, we had before?
+        // Not the best solution as for me...
         std::cout << "WARN: processStackTop: mStack was returned back" << std::endl;
         mStack.push(a);
         mStack.push(b);
@@ -107,6 +110,7 @@ void Calculator::processStackTop()
 Calculator::eSigns Calculator::strToSign(const std::string str) const
 //-----------------------------------------------------------------------------
 {
+    // How about switch?
     if ("+" == str)
     {
         return eSigns::PLUS;
