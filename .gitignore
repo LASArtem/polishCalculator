@@ -1,5 +1,7 @@
 build*
 build/*
+bin*
+lib*
 CMakeLists.txt.user*
 
 # Eclipce

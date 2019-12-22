@@ -31,7 +31,7 @@ void Parser::parseStringToStringStack(const std::string line, std::stack<std::st
     std::string word = "";
     const char* firstCharPtr = line.c_str();
 
-    for ( int i = 0; i < line.size(); ++i )
+    for ( size_t i = 0; i < line.size(); ++i )
     {
         if (space != firstCharPtr[i])
         {
